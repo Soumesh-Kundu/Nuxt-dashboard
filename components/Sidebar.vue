@@ -1,10 +1,9 @@
 <template>
   <button
-    data-drawer-target="default-sidebar"
-    data-drawer-toggle="default-sidebar"
-    aria-controls="default-sidebar"
     type="button"
+    id="button"
     class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+    @click="OpenSidebar"
   >
     <span class="sr-only">Open sidebar</span>
     <svg
@@ -23,8 +22,8 @@
   </button>
 
   <aside
-    id="default-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+    id="sidebar"
+    class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
     aria-label="Sidebar"
   >
     <div class="h-full px-3 py-4 overflow-y-auto bg-[#111827]">
@@ -37,7 +36,7 @@
         <li>
           <NuxtLink
             to="/"
-            class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700"
+            class="flex items-center p-2 text-base font-normal text-white rounded-lg closeButton hover:bg-gray-700"
           >
             <svg
               aria-hidden="true"
@@ -55,7 +54,7 @@
         <li>
           <NuxtLink
             to="/inbox"
-            class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700"
+            class="flex items-center p-2 text-white rounded-lg closeButton dark:text-white hover:bg-gray-700 dark:hover:bg-gray-700"
           >
             <svg
               aria-hidden="true"
@@ -106,7 +105,7 @@
         <li>
           <NuxtLink
             to="/jobs"
-            class="flex items-center p-2 text-base font-normal text-white rounded-lg hover:bg-gray-700"
+            class="flex items-center p-2 text-base font-normal text-white rounded-lg closeButton hover:bg-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -304,11 +303,33 @@
 
 <script setup>
 import { onMounted } from "vue";
-import { initDrawers } from "flowbite";
+import { Drawer } from "flowbite";
 
 // initialize components based on data attribute selectors
 onMounted(() => {
-  initDrawers();
+  const $buttonElement=document.querySelector('#button')
+  const $sideBarElement=document.querySelector('#sidebar')
+  const $closeButtonElement=document.querySelectorAll('.closeButton')
+
+  const drawerOptions = {
+    backdropClasses:
+      'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+  };
+
+  let drawer
+  if ($sideBarElement) {
+    drawer = new Drawer($sideBarElement, drawerOptions);
+
+    $buttonElement.addEventListener('click',()=>{
+      drawer.toggle()
+    })
+    
+    $closeButtonElement.forEach((item)=>{
+      item.addEventListener('click',()=>{
+        drawer.hide()
+      })
+    })
+  }
 });
 </script>
 

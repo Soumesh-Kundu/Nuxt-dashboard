@@ -4,7 +4,7 @@
     <span class="text-gray-600">WORK INBOX</span>
   </header>
   <main class="grid grid-cols-12 overflow-y-hidden">
-    <section class="col-span-12 p-4 border-r border-gray-200 sm:col-span-3">
+    <section class="col-span-12 p-4 border-r border-gray-200 lg:col-span-3">
       <form class="flex items-center gap-2">
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
@@ -43,7 +43,7 @@
           <span class="sr-only">Search</span>
         </button>
       </form>
-      <div class="flex flex-col md:h-[32rem] py-2 gap-2 mt-4 md:overflow-y-auto no-scrollbar">
+      <div class="flex flex-col lg:h-[32rem] py-2 gap-2 mt-4 lg:overflow-y-auto no-scrollbar">
         <div
           v-for="(item, index) in data"
           :key="index"
@@ -66,7 +66,7 @@
         </div>
       </div>
     </section>
-    <section class="col-span-12 border-r border-gray-200 sm:col-span-6">
+    <section class="col-span-12 border-r border-gray-200 lg:col-span-6">
       <div class="flex items-center justify-between p-4 border-b border-b-gray-200">
         <div>
           <h4 class="text-sm font-bold">My Application for Senior Developer</h4>
@@ -79,7 +79,7 @@
           <span class="px-3 py-1 md:py-1.5 text-gray-800">Email</span>
         </div>
       </div>
-      <div class="w-full md:h-[29rem]  md:overflow-y-auto">
+      <div class="w-full lg:h-[29rem]  lg:overflow-y-auto">
 
         <div class="relative mt-8 border-t border-t-gray-200">
           <span class="absolute top-0 px-3 py-1 text-xs font-semibold text-white -translate-x-1/2 -translate-y-1/2 bg-black rounded-full left-1/2">Fri, 2 Jul</span>
@@ -112,7 +112,7 @@
         <PaperAirplaneIcon class="text-blue-600 w-7 h-7" />
       </div>
     </section>
-    <section class="col-span-12 md:h-[37rem] sm:col-span-3 md:overflow-y-auto new-scrollbar">
+    <section class="col-span-12 lg:h-[37rem] lg:col-span-3 lg:overflow-y-auto new-scrollbar">
       <div class="flex flex-col items-center p-4 border-b border-b-gray-200">
         <img :src="data[2].image" alt="dp" class="w-16 h-16 rounded-full">
         <h3 class="mt-2 font-bold ">{{ data[2].name }}</h3>
